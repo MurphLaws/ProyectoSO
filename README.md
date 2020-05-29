@@ -67,14 +67,16 @@ main(int argc, char *argv[])
   }
 
   // su codigo debe imprimir el tiempo en el formato que desee..
-  printf(1, "%d-%d-%d %d:%d:%d\n", r.year, r.month, r.day, r.hour-5, r.minute, r.second); 
+  printf(1, "%d:%d:%d   %d/%d/%d\n",r.hour-5, r.minute, r.second, r.year, r.month, r.day);
   //Se agrega esta linea para que el comando realice la impresion
   exit();
 }
 
 ```
+Idea de usar grep para ver los archivos a modificar
+https://arjunkrishnababu96.gitlab.io/post/xv6-system-call/
 
-Idea de usar grep para ver los archivos a modificar y cmostime()
+Idea de usar cmostime()
 https://pdos.csail.mit.edu/6.828/2019/labs/util.html
 
 Idea de usar el metodo argptr  
