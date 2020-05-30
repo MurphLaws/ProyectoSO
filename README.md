@@ -5,10 +5,17 @@
 
 ## 1.Imprimir las llamadas al sistema que se llevan a cabo
 
-Para crear este comando se tuvo la idea de crear una llamada al sistema `trace()`que sirviese para lelvar las cuentas de los llamados al sistema. Esta contaria con un arreglo con los nombres de las llamadas al sistema (idea tomada de:https://github.com/nickbean01/xv6-trace/blob/master/syscall.c):
+
+
+Siguiendo la idea planteada en [este blog](https://zhuzilin.github.io/6.828-hw-xv6-system-call/),y ka base sugerida por el profesor, se crea un arreglo con todos los nombres de las distintas llamadas a sistema que imprime todos los llamados que se han hecho a distintas funciones si no se ingresa ningun argumento, y el numero de invocaciones de una llamada en especifico, si se ingresa el nombre de ella. Esta funcion trabaja invocando la llamada count() que retorna el numero de invocaciones que se han hecho a determinada llamada.
 
 ```c
-const char *sysnames[] = {
+int
+main(int argc, char *argv[])
+{
+
+
+const char *namesyscalls[] = {
 "date",
 "fork",
 "exit",
@@ -30,11 +37,32 @@ const char *sysnames[] = {
 "unlink",
 "link",
 "mkdir",
-"close",
-};
+"close"	,
+"count",
+	};
 
-```
-y se escribiria en el archivo `syscall.c`, sin embargo se obtuvieron demasiados errores a la hora de pasar los parametros y por lo tanto el comando no puedo ser implementado finalmente.
+ int nsyscall = -1;
+ if (argc == 2) {
+  nsyscall = atoi(argv[1]);
+ }
+ if (nsyscall == -1) {
+  // mostrar todas las llamadas al sistema
+  // con su correspondiente numero de invocaciones
+	for(int i = 0; i < 23)
+	{
+	printf(1, "%s ---> %d \n", namesyscalls[i], count(i);
+	} 
+	
+ } else {
+  // mostrar la llamada al sistema dada en nsyscall
+  // con su correspondiente numero de invocaciones
+	printf(1, "%s ---> %d \n", namesyscalls[nsyscall], count(nsyscall));  
+  // Ejemplo de impresion: fork ---> 4
+  //                       exit ---> 3
+ }
+ exit();
+}
+
 
 
 
@@ -149,6 +177,8 @@ main(int argc, char *argv[])
 
 ```
 # Se usaron los siguientes recursos para la realizacion del proyecto.
+
+Como crear un llamado para imprimir las llamadas a sistema: https://zhuzilin.github.io/6.828-hw-xv6-system-call/
 
 Como crear una llamada al sistema en XV6:https://arjunkrishnababu96.gitlab.io/post/xv6-system-call/
 
