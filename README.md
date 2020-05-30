@@ -3,6 +3,37 @@
 
 ## 1. Escriba el comando uptime
 
+Para escribir el comando `uptime.c`, cuya función es mostrar el tiempo que lleva encendido el sistema hacemos uso de la llamada al sistema `uptime` que devuelve los ciclos del reloj que han habido desde que se inició el sistema. Nos dimos cuenta que la máquina en la que desarrollamos el comando nos daba 4000 ciclos del reloj por cada minuto, entonces hicimos lo siguiente para pasar a formato hh:mm:ss
+
+``` c
+  //uptime.c
+  #include "types.h"
+  #include "user.h"
+
+  int main()
+  {
+        int time = (60*uptime())/4000;
+        int hours = time / 36000;
+        int minutes = (time-hours*3600)/60;
+        int seconds = time-(hours*3600+minutes*60);
+        printf(1, "up  %d:%d:%d\n", hours, minutes, seconds);
+        exit();
+  }
+```
+
+el problema que nos encontramos es que los ciclos del reloj no son iguales en todas las máquinas porque estos se ven afectados por factores del hardware y el programa anterior, al probarlo en otra máquina, no nos dió resultados correctos y tampoco encontramos una forma de determinar de forma general cuántos ticks del reloj tendría por minuto cada máquina en la que se ejecutara el sistema, por lo que la implementación del comando quedó de la siguiente forma para evitar dar resultados erroneos 
+
+``` c
+  //uptime.c
+  #include "types.h"
+  #include "user.h"
+
+  int main()
+  {
+        printf(1, "up %d clock ticks\n", uptime());
+        exit();
+  }
+```
 
 
 ## 2. Escriba el comando date           
