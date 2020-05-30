@@ -1,7 +1,42 @@
 # ProyectoSO
 
+## 1.Imprimir las llamadas al sistema que se llevan a cabo
 
-## 1. Escriba el comando uptime
+Para crear este comando se tuvo la idea de crear una llamada al sistema `trace()`que sirviese para lelvar las cuentas de los llamados al sistema. Esta contaria con un arreglo con los nombres de las llamadas al sistema (idea tomada de:https://github.com/nickbean01/xv6-trace/blob/master/syscall.c):
+
+```c
+const char *sysnames[] = {
+"date",
+"fork",
+"exit",
+"wait",
+"pipe",
+"read",
+"kill",
+"exec",
+"fstat",
+"chdir",
+"dup",
+"getpid",
+"sbrk",
+"sleep",
+"uptime",
+"open",
+"write",
+"mknod",
+"unlink",
+"link",
+"mkdir",
+"close",
+};
+
+```
+y se escribiria en el archivo `syscall.c`, sin embargo se obtuvieron demasiados errores a la hora de pasar los parametros y por lo tanto el comando no puedo ser implementado finalmente.
+
+
+
+
+## 2. Escriba el comando uptime
 
 Para escribir el comando `uptime.c`, cuya función es mostrar el tiempo que lleva encendido el sistema hacemos uso de la llamada al sistema `uptime` que devuelve los ciclos del reloj que han habido desde que se inició el sistema. Nos dimos cuenta que la máquina en la que desarrollamos el comando nos daba 4000 ciclos del reloj por cada minuto, entonces hicimos lo siguiente para pasar a formato hh:mm:ss
 
@@ -36,7 +71,7 @@ pero surge un inconveniente, y es que los ciclos del reloj no son iguales en tod
 ```
 
 
-## 2. Escriba el comando date           
+## 3. Escriba el comando date           
 
 Para escribir el comando `date.c`, cuya funcion es mostrar la hora actual del sistema en formato horas:minutos:segundos año\mes\dia UCT, se creo la llamada al sitema `date`. Para esto se modificaron los siguientes archivos, con las lieas descritas a continuacion:  
 
