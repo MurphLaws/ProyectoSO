@@ -7,7 +7,7 @@
 
 
 
-Siguiendo la idea planteada en [este blog](https://zhuzilin.github.io/6.828-hw-xv6-system-call/),y ka base sugerida por el profesor, se crea un arreglo con todos los nombres de las distintas llamadas a sistema que imprime todos los llamados que se han hecho a distintas funciones si no se ingresa ningun argumento, y el numero de invocaciones de una llamada en especifico, si se ingresa el nombre de ella. Esta funcion trabaja invocando la llamada count() que retorna el numero de invocaciones que se han hecho a determinada llamada.
+Siguiendo la idea planteada en [este blog](https://zhuzilin.github.io/6.828-hw-xv6-system-call/),y la base sugerida por el profesor, se crea un arreglo con todos los nombres de las distintas llamadas a sistema que imprime todos los llamados que se han hecho a estas si no se ingresa ningun argumento, y el numero de invocaciones de una llamada en especifico, si se ingresa el nombre de ella. Esta funcion trabaja invocando la llamada count() que retorna el numero de invocaciones que se han hecho a determinada llamada.
 
 ```c
 int
