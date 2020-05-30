@@ -1,5 +1,8 @@
 # ProyectoSO
 
+## Carlos Tovar (1741699)
+## Nicolas Lasso (1740395)
+
 ## 1.Imprimir las llamadas al sistema que se llevan a cabo
 
 Para crear este comando se tuvo la idea de crear una llamada al sistema `trace()`que sirviese para lelvar las cuentas de los llamados al sistema. Esta contaria con un arreglo con los nombres de las llamadas al sistema (idea tomada de:https://github.com/nickbean01/xv6-trace/blob/master/syscall.c):
