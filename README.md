@@ -1,7 +1,7 @@
 # ProyectoSO
 
-## Carlos Tovar (1741699)
-## Nicolas Lasso (1740395)
+## Carlos Tovar (1741699), Nicolas Lasso (1740395)
+
 
 ## 1.Imprimir las llamadas al sistema que se llevan a cabo
 
