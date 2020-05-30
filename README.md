@@ -21,7 +21,7 @@ Para escribir el comando `uptime.c`, cuya función es mostrar el tiempo que llev
   }
 ```
 
-el problema que nos encontramos es que los ciclos del reloj no son iguales en todas las máquinas porque estos se ven afectados por factores del hardware y el programa anterior, al probarlo en otra máquina, no nos dió resultados correctos y tampoco encontramos una forma de determinar de forma general cuántos ticks del reloj tendría por minuto cada máquina en la que se ejecutara el sistema, por lo que la implementación del comando quedó de la siguiente forma para evitar dar resultados erroneos 
+pero surge un inconveniente, y es que los ciclos del reloj no son iguales en todas las máquinas, porque estos se ven afectados por factores del hardware. Cuando se probó el programa anterior en otra máquina arrojó resultados incorrectos y no se encontró la manera de determinar de forma general cuántos ticks del reloj tendría por minuto cada máquina en la que se ejecutara el el comando, por lo que la implementación quedó de la siguiente forma para evitar resultados erroneos 
 
 ``` c
   //uptime.c
