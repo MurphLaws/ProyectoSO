@@ -1,7 +1,13 @@
 # ProyectoSO
 
 
+## 1. Escriba el comando uptime
 
+
+
+## 2. Escriba el comando date           
+
+Para escribir el comando `date.c`, cuya funcion es mostrar la hora actual del sistema en formato horas:minutos:segundos año\mes\dia UCT, se creo la llamada al sitema `date`. Para esto se modificaron los siguientes archivos, con las lieas descritas a continuacion:  
 
 ``` c
   //syscall.c
@@ -34,7 +40,7 @@
     
 ```
 
-
+Ademas, se contaba con una estructura en el arhivo `date.h`que se utilizo para almacenar la hora actual del sistema y su posterior impresion. 
 
 ```c
 struct rtcdate {
@@ -49,7 +55,7 @@ struct rtcdate {
 
 ```
 
-
+Por utlimo se crea el archivo `date.c` en el que se imprimen los datos de la estructura con un formato especifico.
 
 ```c
 #include "types.h"
@@ -73,11 +79,10 @@ main(int argc, char *argv[])
 }
 
 ```
-Idea de usar grep para ver los archivos a modificar
-https://arjunkrishnababu96.gitlab.io/post/xv6-system-call/
+# Se usaron los siguientes recursos para la realizacion del proyecto.
 
-Idea de usar cmostime()
-https://pdos.csail.mit.edu/6.828/2019/labs/util.html
+Como crear una llamada al sistema en XV6:https://arjunkrishnababu96.gitlab.io/post/xv6-system-call/
 
-Idea de usar el metodo argptr  
-https://stackoverflow.com/questions/53383938/pass-struct-to-xv6-system-call
+Como obtener el tiempo del sistema:https://pdos.csail.mit.edu/6.828/2019/labs/util.html
+
+Como pasar una estructura a una llamada del sistema:https://stackoverflow.com/questions/53383938/pass-struct-to-xv6-system-call
