@@ -18,6 +18,14 @@ int
   }
   
 
+int
+sys_count(void)
+{
+        int n;
+        argint(0, &n);
+        return getCount(n);
+}
+
 
 int
 sys_fork(void)
