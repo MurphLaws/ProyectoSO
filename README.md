@@ -104,7 +104,7 @@ pero surge un inconveniente, y es que los ciclos del reloj no son iguales en tod
 
 ## 3. Escriba el comando date           
 
-Para escribir el comando `date.c`, cuya funcion es mostrar la hora actual del sistema en formato horas:minutos:segundos año\mes\dia UCT, se creo la llamada al sitema `date`. Para esto se modificaron los siguientes archivos, con las lieas descritas a continuacion:  
+Para escribir el comando `date.c`, cuya funcion es mostrar la hora actual del sistema en formato horas:minutos:segundos año\mes\dia UCT, se creo la llamada al sitema `date`. Para esto se modificaron los siguientes archivos, con las lineas descritas a continuacion:  
 
 ``` c
   //syscall.c
@@ -136,8 +136,7 @@ Para escribir el comando `date.c`, cuya funcion es mostrar la hora actual del si
 
     
 ```
-
-Ademas, se contaba con una estructura en el arhivo `date.h`que se utilizo para almacenar la hora actual del sistema y su posterior impresion. 
+Todos estos pasos son necesarios a la hora de crear una nueva llamada al sistema y se repiten en el punto 4. Ademas, se contaba con una estructura en el arhivo `date.h`que se utilizo para almacenar la hora actual del sistema y su posterior impresion. 
 
 ```c
 struct rtcdate {
@@ -176,6 +175,94 @@ main(int argc, char *argv[])
 }
 
 ```
+
+
+## 4. Llamada al sistema que permita mostrar el número de invocaciones que una llamada al sistema ha tenido
+          
+
+Para crear esta nueva llamada al sistema, se deben modificar los siguientes archivos, de la siguiente manera.
+
+``` c
+  //syscall.c
+  extern int sys_count(void);
+  
+  [SYS_count]    sys_count,
+  
+  //syscal.h
+  #define SYS_count  23
+  
+  
+  //sysproc.c
+  int
+  sys_count(void)
+  {
+    int n;
+    argint(0, &n);
+    return getCount(n);
+  }
+  
+  
+  //user.h
+  int count(int);
+  
+  
+  //usys.S
+  SYSCALL(count)
+  
+ ```
+ 
+ 
+Ademas, se debe modificar el archivo `defs.h` para agregar una nueva linea, pues para esta llamada al sistema dispondremos de una nueva funcion que nos retorna el numero de invocaciones de una determinada llamada.
+
+```c
+// syscall.c
+int             argint(int, int*);
+int             argptr(int, char**, int);
+int             argstr(int, char**);
+int             fetchint(uint, int*);
+int             fetchstr(uint, char**);
+void            syscall(void);
+int 		getCount(int);
+
+
+```
+
+Luego, en el archivo `syscall.c` se crea un arreglo inicializado en ceros que almacenara el numero de invocaciones de cada llamada. Ademas, se crea la funcion getCount que retorna el valor dentro de ese arreglo.
+
+```c
+
+int numCalls[23] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+
+int getCount(int k){
+   return numCalls[k-1];
+}
+
+```
+
+Y por ultimo, se agrega una nueva linea a la funcion syscall, que aumentara el numero de cada llamada al sistema
+
+```c
+
+void
+syscall(void)
+{
+  int num;
+  struct proc *curproc = myproc();
+
+  num = curproc->tf->eax;
+  if(num > 0 && num < NELEM(syscalls) && syscalls[num]){
+    curproc->tf->eax = syscalls[num]();
+    numCalls[num]++; // Nueva linea
+  } else {
+    cprintf("%d %s: unknown sys call %d\n",
+            curproc->pid, curproc->name, num);
+    curproc->tf->eax = -1;
+  }
+}
+
+
+```
+
 # Se usaron los siguientes recursos para la realizacion del proyecto.
 
 Como crear un llamado para imprimir las llamadas a sistema: https://zhuzilin.github.io/6.828-hw-xv6-system-call/
