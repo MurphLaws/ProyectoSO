@@ -105,6 +105,7 @@ extern int sys_wait(void);
 extern int sys_write(void);
 extern int sys_uptime(void);
 extern int sys_date(void);
+extern int sys_count(void);
 
 
 static int (*syscalls[])(void) = {
