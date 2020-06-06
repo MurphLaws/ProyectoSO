@@ -121,7 +121,7 @@ Para escribir el comando `date.c`, cuya funcion es mostrar la hora actual del si
   sys_date(void)
   {
    struct rtcdate *r;
-   argptr(0, (void*)&r, sizeof(&r))
+   argptr(0, (void*)&r, sizeof(&r));
    cmostime(r);
    return 0;
   }
