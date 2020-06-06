@@ -140,6 +140,12 @@ int getCount(int k){
    return numCalls[k-1];
 }
 
+int numCalls[23] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+
+int getCount(int k){
+   return numCalls[k-1];
+}
+
 void
 syscall(void)
 {
@@ -156,8 +162,4 @@ syscall(void)
     curproc->tf->eax = -1;
   }
 }
-: unknown sys call %d\n",
-            curproc->pid, curproc->name, num);
-    curproc->tf->eax = -1;
-  }
-}
+
