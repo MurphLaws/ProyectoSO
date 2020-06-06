@@ -263,6 +263,39 @@ syscall(void)
 
 ```
 
+
+Luego de tener todos nuestros comandos, se debe modificar el archivo Makefile para poder ejecutarlos dentro del sistema.
+
+```console
+        _cat\
+        _echo\
+        _forktest\
+        _grep\
+        _init\
+        _kill\
+        _ln\
+        _ls\
+        _mkdir\
+        _rm\
+        _sh\
+        _stressfs\
+        _usertests\
+        _wc\
+        _zombie\
+        _date\
+        _uptime\
+        _count\
+	
+EXTRA=\
+        mkfs.c ulib.c user.h cat.c echo.c forktest.c grep.c kill.c\
+        ln.c ls.c mkdir.c rm.c stressfs.c usertests.c wc.c zombie.c\
+        date.c uptime.c count.c printf.c umalloc.c\
+        README dot-bochsrc *.pl toc.* runoff runoff1 runoff.list\
+        .gdbinit.tmpl gdbutil\
+
+```
+
+
 # Se usaron los siguientes recursos para la realizacion del proyecto.
 
 Como crear un llamado para imprimir las llamadas a sistema: https://zhuzilin.github.io/6.828-hw-xv6-system-call/
