@@ -222,7 +222,7 @@ int             argstr(int, char**);
 int             fetchint(uint, int*);
 int             fetchstr(uint, char**);
 void            syscall(void);
-int 		getCount(int); nuvea linea
+int 		getCount(int); // nueva linea
 
 
 ```
@@ -266,7 +266,7 @@ syscall(void)
 
 Luego de tener todos nuestros comandos, se debe modificar el archivo Makefile para poder ejecutarlos dentro del sistema.
 
-```console
+```bash
         _cat\
         _echo\
         _forktest\
@@ -294,6 +294,82 @@ EXTRA=\
         .gdbinit.tmpl gdbutil\
 
 ```
+## Pruebas. 
+
+Luego de ejecutar los comandos creados, algunas de los resultados son los siguientes.
+
+
+``` console
+
+date
+
+3:15:21   2020/6/6 UCT
+3:15:35   2020/6/6 UCT
+3:15:45   2020/6/6 UCT
+
+
+uptime 
+
+up 205 clock ticks
+up 2785 clock ticks
+up 3572 clock ticks
+
+count
+
+fork ---> 0 
+exit ---> 0 
+wait ---> 2 
+pipe ---> 0 
+read ---> 0 
+kill ---> 0 
+exec ---> 6 
+fstat ---> 0 
+chdir ---> 3 
+dup ---> 0 
+getpid ---> 0 
+sbrk ---> 2 
+sleep ---> 0 
+uptime ---> 1 
+open ---> 0 
+write ---> 0 
+mknod ---> 2 
+unlink ---> 249 
+link ---> 0 
+mkdir ---> 0 
+close ---> 0 
+date ---> 0 
+count ---> 1 
+
+
+
+
+fork ---> 0 
+exit ---> 0 
+wait ---> 2 
+pipe ---> 0 
+read ---> 0 
+kill ---> 0 
+exec ---> 6 
+fstat ---> 0 
+chdir ---> 3 
+dup ---> 0 
+getpid ---> 0 
+sbrk ---> 2 
+sleep ---> 0 
+uptime ---> 1 
+open ---> 0 
+write ---> 0 
+mknod ---> 2 
+unlink ---> 249 
+link ---> 0 
+mkdir ---> 0 
+close ---> 0 
+date ---> 0 
+count ---> 1 
+
+```
+
+
 
 
 # Se usaron los siguientes recursos para la realizacion del proyecto.
