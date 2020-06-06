@@ -97,6 +97,7 @@ extern int sys_mknod(void);
 extern int sys_open(void);
 extern int sys_pipe(void);
 extern int sys_read(void);
+extern int sys_count(void);
 extern int sys_sbrk(void);
 extern int sys_sleep(void);
 extern int sys_unlink(void);
@@ -129,7 +130,15 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
+[SYS_count]   sys_count
 };
+
+
+int numCalls[23] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+
+int getCount(int k){
+   return numCalls[k-1];
+}
 
 void
 syscall(void)
@@ -138,10 +147,16 @@ syscall(void)
   struct proc *curproc = myproc();
 
   num = curproc->tf->eax;
-  if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
+  if(num > 0 && num < NELEM(syscalls) && syscalls[num]){
     curproc->tf->eax = syscalls[num]();
+    numCalls[num]++;
   } else {
     cprintf("%d %s: unknown sys call %d\n",
+            curproc->pid, curproc->name, num);
+    curproc->tf->eax = -1;
+  }
+}
+: unknown sys call %d\n",
             curproc->pid, curproc->name, num);
     curproc->tf->eax = -1;
   }
